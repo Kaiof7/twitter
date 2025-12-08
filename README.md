@@ -84,7 +84,7 @@ Deploy automático pela Vercel
 ⚙️ Configuração do Ambiente de Desenvolvimento
 🔧 Backend
 1️⃣ Clonar o repositório
-git clone https://github.com/diegocavalcanti-dev/twitter.git
+git clone https://github.com/Kaiof7/twitter.git
 cd twitter/backend
 
 2️⃣ Criar ambiente virtual
