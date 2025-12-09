@@ -69,13 +69,14 @@ CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
     "https://kaio17.pythonanywhere.com",
-    "https://twitter-sigma.vercel.app",
+    "https://twitter-geifsl1kj-kaio-felipes-projects.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://kaio17.pythonanywhere.com",
-    "https://twitter-sigma.vercel.app",
+    "https://twitter-geifsl1kj-kaio-felipes-projects.vercel.app",
 ]
+
 
 # --------------------------------------------------------------
 # 🔗 ROOT / TEMPLATES / WSGI
