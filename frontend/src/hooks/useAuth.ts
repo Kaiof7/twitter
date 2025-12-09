@@ -10,57 +10,61 @@ interface AuthState {
     restoreSession: () => void;
 }
 
+const API_BASE = "https://kaio17.pythonanywhere.com/api/users";
+
 export const useAuth = create<AuthState>((set) => ({
     isAuthenticated: false,
     token: localStorage.getItem('authToken'),
 
     login: async (email: string, password: string) => {
         try {
-        const resp = await fetch('https://backend-rafaelglowacki.pythonanywhere.com/api/users/token/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password }),
-        });
+            const resp = await fetch(`${API_BASE}/token/`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
 
-        if (!resp.ok) {
-            const errorText = await resp.text();
-            console.error('Erro no login:', errorText);
-            throw new Error('Falha no login');
-        }
+            if (!resp.ok) {
+                const errorText = await resp.text();
+                console.error('Erro no login:', errorText);
+                throw new Error('Falha no login');
+            }
 
-        const data = await resp.json();
-        localStorage.setItem('authToken', data.access);
-        set({ isAuthenticated: true, token: data.access });
-        console.log("Token após login:", data.access); // 🔹 aqui
+            const data = await resp.json();
+            localStorage.setItem('authToken', data.access);
+            set({ isAuthenticated: true, token: data.access });
+
         } catch (error) {
-        console.error('Erro ao fazer login:', error);
-        set({ isAuthenticated: false, token: null });
+            console.error('Erro ao fazer login:', error);
+            set({ isAuthenticated: false, token: null });
         }
     },
 
     signup: async (email: string, password: string, passwordConfirmation: string) => {
         try {
-        const resp = await fetch('https://backend-rafaelglowacki.pythonanywhere.com/api/users/signup/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-            email,
-            password,
-            password_confirmation: passwordConfirmation,
-            }),
-        });
+            const resp = await fetch(`${API_BASE}/signup/`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email,
+                    password,
+                    password_confirmation: passwordConfirmation,
+                }),
+            });
 
-        if (!resp.ok) {
-            const errorData = await resp.text();
-            console.error('Erro no signup:', errorData);
-            throw new Error('Falha no cadastro');
-        }
+            if (!resp.ok) {
+                const errorData = await resp.text();
+                console.error('Erro no signup:', errorData);
+                throw new Error('Falha no cadastro');
+            }
 
-        await resp.json();
-        // login automático após o cadastro bem-sucedido
-        await useAuth.getState().login(email, password);
+            await resp.json();
+
+            // 🔥 login automático após criar conta
+            await useAuth.getState().login(email, password);
+
         } catch (error) {
-        console.error('Erro ao fazer cadastro:', error);
+            console.error('Erro ao fazer cadastro:', error);
         }
     },
 
@@ -71,18 +75,11 @@ export const useAuth = create<AuthState>((set) => ({
     },
 
     restoreSession: () => {
-    const token = localStorage.getItem('authToken');
-        console.log("restoreSession token:", token); // 🔹 aqui
-    if (token) {
-        set({ isAuthenticated: true, token });
-    } else {
-        set({ isAuthenticated: false, token: null });
-    }
+        const token = localStorage.getItem('authToken');
+        if (token) {
+            set({ isAuthenticated: true, token });
+        } else {
+            set({ isAuthenticated: false, token: null });
+        }
     },
-
-
-
-
-
-
 }));
