@@ -1,141 +1,202 @@
-# Twitter Clone
+🚀 Twitter Clone
+👨‍💻 Autor
 
-## Autor
-Rafael Glowacki
+Kaio Felipe
 
-## Versão
+📌 Versão
+
 1.0
 
-## Data
-12-11-2025
+📅 Data
 
----
+12/11/2025
 
-### Descrição do Projeto
+📝 Descrição do Projeto
 
-O **Twitter** é uma aplicação desenvolvida para aprofundar conhecimentos em Django e React. O projeto é dividido em dois componentes principais:
+O Twitter Clone é uma aplicação Full Stack desenvolvida para aprofundar conhecimentos em Django Rest Framework, React, Vite, JWT e deploy em nuvem.
 
-- **Backend**: Construído com Django Rest Framework, fornecendo uma API robusta para gerenciar usuários, tweets, seguidores e notificações.
-- **Frontend**: Desenvolvido em React com integração ao backend via Axios, com estilização usando Tailwind CSS.
+O projeto é composto por dois módulos:
 
-O projeto foi implantado utilizando:
-- **Backend**: PythonAnywhere.
-- **Frontend**: Vercel.
+Backend (API) → Django Rest Framework
+Implantado no PythonAnywhere
 
-Durante o desenvolvimento, utilizei containers Docker para configurar um ambiente com PostgreSQL, garantindo flexibilidade e escalabilidade no banco de dados durante o desenvolvimento.
+Frontend (Interface) → React + Vite
+Implantado na Vercel
 
----
+Durante o desenvolvimento, utilizei Docker + PostgreSQL no ambiente local para maior flexibilidade e escalabilidade, enquanto o deploy utiliza SQLite para manter o backend leve dentro do PythonAnywhere.
 
-### Funcionalidades
+✨ Funcionalidades
 
-- **Gerenciamento de Usuários**: Cadastro, autenticação e gerenciamento de perfis.
-- **Tweets**: Criação, listagem, edição e exclusão de tweets.
-- **Seguidores**: Gerenciamento de relações entre seguidores e seguidos.
-- **Notificações**: Atualizações sobre novos seguidores e interações em tweets.
-- **Autenticação JWT**: Segurança nos endpoints protegidos.
-- **Painel Administrativo**: Interface do Django Admin para gerenciar dados e permissões.
+👤 Autenticação JWT (Login / Registro)
 
----
+📝 Tweets: Criar, listar, editar e excluir
 
-### Estrutura do Projeto
+🔁 Sistema de seguidores
 
-#### Backend
+🔔 Notificações básicas
 
-- **Framework**: Django 5.1.4.
-- **API**: Endpoints organizados com Django Rest Framework.
-- **Banco de Dados**: PostgreSQL (em desenvolvimento) e SQLite (em produção).
-- **Autenticação**: Implementação de autenticação com JWT.
-- **Ferramentas Adicionais**:
-  - Django Extensions.
-  - WhiteNoise para servir arquivos estáticos em produção.
-  - Django Cors Headers para integração entre frontend e backend.
+🧑‍💼 Admin do Django para gerenciar a aplicação
 
-#### Frontend
+🌐 Integração frontend-backend via API
 
-- **Framework**: React 18.
-- **Estilização**: Tailwind CSS.
-- **Requisições HTTP**: Axios para comunicação com a API.
-- **Roteamento**: React Router.
-- **Criptografia**: Crypto-js para manipulação segura de dados.
+⚡ Front-end rápido com React + Vite
 
----
+🎨 Estilização com TailwindCSS
 
-### Configuração do Ambiente de Desenvolvimento
+📂 Estrutura do Projeto
+🖥️ Backend (Django)
 
-#### Backend
+Django 5.x
 
-1. **Clonar o Repositório**:
-   ```bash
-   git clone https://github.com/diegocavalcanti-dev/twitter.git
-   cd twitter/backend
+Django Rest Framework
 
-2. **Configurar o Ambiente Virtual**:
-    ```bash
-    python3.10 -m venv env
-    source env/bin/activate
+Autenticação via JWT
 
-3. **Instalar Dependências**:
-    ```bash
-    poetry install
+CORS Headers configurado para integração com Vercel
 
-4. **Configurar o Banco de Dados**:
-    ```bash
-    poetry run python manage.py makemigrations
-    poetry run python manage.py migrate
+WhiteNoise para servir arquivos estáticos
 
-5. **Criar um Superusuário**:
-    ```bash
-    poetry run python manage.py createsuperuser
+Variáveis de ambiente via .env
 
-6. **Rodar o Servidor**:
-    ```bash
-    poetry run python manage.py runserver
+Banco:
 
-### Frontend
+Desenvolvimento: PostgreSQL (Docker)
 
-1. **Configurar o Diretório**:
-    ```bash
-    cd ../frontend
+Produção: SQLite (PythonAnywhere)
 
-2. **Instalar Dependências**:
-    ```bash
-    npm install
+🌐 Frontend (React)
 
-3. **Configurar Variáveis de Ambiente: Altere o arquivo src/api/base_api.js**:
-    export const API_BASE_URL = 'http://localhost:8000';
+React 18 + Vite
 
-4. **Rodar o Servidor de Desenvolvimento**:
-    npm run dev
+Tailwind CSS
 
-# Deploy
+React Router
 
-## Backend
-- Implantado no **PythonAnywhere**.
-- **Webhook configurado** para atualizações automáticas.
+Zustand para gerenciamento de estado
 
-## Frontend
-- Hospedado na **Vercel**.
+Comunicação via fetch/axios usando:
 
-## Tecnologias Utilizadas
+import.meta.env.VITE_API_URL
 
-### Backend
-- Django Rest Framework
-- PostgreSQL
-- Poetry
-- Docker
 
-### Frontend
-- React
-- Tailwind CSS
-- Axios
+Deploy automático pela Vercel
 
-# Testes
+⚙️ Configuração do Ambiente de Desenvolvimento
+🔧 Backend
+1️⃣ Clonar o repositório
+git clone https://github.com/Kaiof7/twitter.git
+cd twitter/backend
 
-Para executar os testes automatizados:
-    ```bash
-    poetry run python manage.py test
+2️⃣ Criar ambiente virtual
+python3.10 -m venv env
+source env/bin/activate
 
-# Contribuições
-Contribuições são bem-vindas! Caso tenha sugestões ou problemas, sinta-se à vontade para abrir uma issue ou enviar um Pull Request.
+3️⃣ Instalar dependências
+pip install -r requirements.txt
 
-Projeto desenvolvido como parte do aprendizado em desenvolvimento Full Stack.
+
+(ou poetry install caso use Poetry)
+
+4️⃣ Migrações do banco
+python manage.py makemigrations
+python manage.py migrate
+
+5️⃣ Criar superusuário
+python manage.py createsuperuser
+
+6️⃣ Rodar servidor local
+python manage.py runserver
+
+💻 Frontend
+1️⃣ Entrar no diretório
+cd twitter/frontend
+
+2️⃣ Instalar dependências
+npm install
+
+3️⃣ Criar .env com a URL da API
+VITE_API_URL=http://localhost:8000
+
+
+Ou para produção:
+
+VITE_API_URL=https://kaio17.pythonanywhere.com
+
+4️⃣ Rodar servidor de desenvolvimento
+npm run dev
+
+☁️ Deploy
+🐍 Backend – PythonAnywhere
+
+Hospedado em: https://kaio17.pythonanywhere.com/
+
+Configurado com:
+
+WSGI
+
+ALLOWED_HOSTS
+
+CSRF_TRUSTED_ORIGINS
+
+WhiteNoise
+
+Webhook configurado para receber updates do GitHub (opcional)
+
+⚛️ Frontend – Vercel
+Configurações:
+
+Build Command:
+
+npm run build
+
+
+Install Command:
+
+npm install
+
+
+Output Directory:
+
+dist
+
+
+Variáveis de ambiente:
+
+VITE_API_URL=https://kaio17.pythonanywhere.com
+
+🧪 Testes
+
+Para executar os testes automatizados no backend:
+
+python manage.py test
+
+🛠️ Tecnologias Utilizadas
+Backend
+
+Django 5.x
+
+Django REST Framework
+
+Simple JWT
+
+WhiteNoise
+
+CORS Headers
+
+Docker
+
+PostgreSQL / SQLite
+
+Frontend
+
+React 18
+
+Vite
+
+Tailwind CSS
+
+React Router
+
+Zustand
+
+Axios / Fetch
