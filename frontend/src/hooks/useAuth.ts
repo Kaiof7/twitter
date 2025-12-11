@@ -10,7 +10,7 @@ interface AuthState {
     restoreSession: () => void;
 }
 
-const API_BASE = "https://kaio17.pythonanywhere.com/api/users";
+const API_BASE = "https://kaio17.pythonanywhere.com";
 
 export const useAuth = create<AuthState>((set) => ({
     isAuthenticated: false,
@@ -18,10 +18,11 @@ export const useAuth = create<AuthState>((set) => ({
 
     login: async (email: string, password: string) => {
         try {
-            const resp = await fetch(`${API_BASE}/token/`, {
+            const resp = await fetch(`${API_BASE}/api/token/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
+                // 👉 SimpleJWT espera username, não email
+                body: JSON.stringify({ username: email, password }),
             });
 
             if (!resp.ok) {
@@ -42,7 +43,7 @@ export const useAuth = create<AuthState>((set) => ({
 
     signup: async (email: string, password: string, passwordConfirmation: string) => {
         try {
-            const resp = await fetch(`${API_BASE}/signup/`, {
+            const resp = await fetch(`${API_BASE}/api/users/signup/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -60,7 +61,7 @@ export const useAuth = create<AuthState>((set) => ({
 
             await resp.json();
 
-            // 🔥 login automático após criar conta
+            // login automático após cadastro
             await useAuth.getState().login(email, password);
 
         } catch (error) {
