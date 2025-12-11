@@ -19,7 +19,7 @@ DEBUG = int(os.environ.get("DEBUG", 0))  # Em produção sempre 0
 
 ALLOWED_HOSTS = [
     "kaio17.pythonanywhere.com",
-    "www.kaio17.pythonanywhere.com",
+    "twitter-theta-henna.vercel.app",
     "127.0.0.1",
     "localhost",
 ]
@@ -70,12 +70,12 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
     "https://kaio17.pythonanywhere.com",
-    "https://twitter-geifsl1kj-kaio-felipes-projects.vercel.app",
+    "twitter-theta-henna.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://kaio17.pythonanywhere.com",
-    "https://twitter-geifsl1kj-kaio-felipes-projects.vercel.app",
+    "twitter-theta-henna.vercel.app",
 ]
 
 

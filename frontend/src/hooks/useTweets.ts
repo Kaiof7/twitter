@@ -12,11 +12,11 @@ export interface CommentType {
 export interface TweetType {
     id: number;
     username: string;
-    user_id: number;
-    author_id: number;
+    user_id: number;           // <-- agora incluído
+    author_id: number
     content: string;
     timestamp: string;
-    likes_count: number;
+    likes_count: number;       // <-- corresponde ao JSON
     replies_count: number;
     comments: CommentType[];
     is_following: boolean;
@@ -25,11 +25,10 @@ export interface TweetType {
     retweets_count: number;
 }
 
-const API_BASE = "https://kaio17.pythonanywhere.com/api";
 
 export function useTweets() {
     const [tweets, setTweets] = useState<TweetType[]>([]);
-    const [reloadKey, setReloadKey] = useState(0);
+    const [reloadKey, setReloadKey] = useState(0); // Força uma atualização
     const { token } = useAuth();
 
     const fetchTweets = useCallback(async () => {
@@ -40,7 +39,7 @@ export function useTweets() {
 
         try {
             console.log("Iniciando busca por tweets...");
-            const response = await fetch(`${API_BASE}/tweets/`, {
+            const response = await fetch('https://backend-rafaelglowacki.pythonanywhere.com/api/tweets/', {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -50,7 +49,6 @@ export function useTweets() {
             const data: TweetType[] = await response.json();
             console.log("Tweets recebidos:", data);
             setTweets(data);
-
         } catch (error) {
             console.error("Erro ao buscar tweets:", error);
         }
@@ -61,7 +59,7 @@ export function useTweets() {
     }, [fetchTweets, reloadKey]);
 
     const reloadTweets = () => {
-        setReloadKey((prev) => prev + 1);
+        setReloadKey((prev) => prev + 1); // Incrementa para forçar atualização
     };
 
     return { tweets, setTweets, fetchTweets, reloadTweets };
