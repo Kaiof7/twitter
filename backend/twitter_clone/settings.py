@@ -70,12 +70,12 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
     "https://kaio17.pythonanywhere.com",
-    "twitter-theta-henna.vercel.app",
+    "https://twitter-theta-henna.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://kaio17.pythonanywhere.com",
-    "twitter-theta-henna.vercel.app",
+    "https://twitter-theta-henna.vercel.app",
 ]
 
 
