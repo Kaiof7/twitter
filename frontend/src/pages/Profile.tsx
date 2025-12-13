@@ -12,7 +12,7 @@ export function Profile() {
   useEffect(() => {
     async function fetchProfile() {
       if (!token) return;
-      const resp = await fetch('https://backend-rafaelglowacki.pythonanywhere.com/api/users/profile/', {
+      const resp = await fetch('https://Kaio17.pythonanywhere.com/api/users/profile/', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await resp.json();
@@ -31,7 +31,7 @@ export function Profile() {
     if (password) formData.append('password', password);
     if (avatar) formData.append('avatar', avatar);
 
-    const resp = await fetch('https://backend-rafaelglowacki.pythonanywhere.com/api/users/profile/', {
+    const resp = await fetch('https://Kaio17.pythonanywhere.com/api/users/profile/', {
       method: 'PATCH',
       headers: { Authorization: `Bearer ${token}` },
       body: formData,

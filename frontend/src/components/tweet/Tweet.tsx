@@ -52,7 +52,7 @@ export function Tweet({
         }
 
         try {
-            const response = await fetch(`https://backend-rafaelglowacki.pythonanywhere.com/api/tweets/${id}/like_tweet/`, {
+            const response = await fetch(`https://Kaio17.pythonanywhere.com/api/tweets/${id}/like_tweet/`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -83,7 +83,7 @@ export function Tweet({
 
         try {
             const response = await fetch(
-                `https://backend-rafaelglowacki.pythonanywhere.com/api/users/toggle-follow/${userId}/`,
+                `https://Kaio17.pythonanywhere.com/api/users/toggle-follow/${userId}/`,
                 {
                     method: "POST",
                     headers: {
@@ -120,7 +120,7 @@ export function Tweet({
         const fetchComments = async () => {
             try {
                 const resp = await fetch(
-                    `https://backend-rafaelglowacki.pythonanywhere.com/api/tweets/${id}/comments/`
+                    `https://Kaio17.pythonanywhere.com/api/tweets/${id}/comments/`
                 );
                 if (!resp.ok) throw new Error('Erro ao buscar comentários');
                 const data = await resp.json();
@@ -137,7 +137,7 @@ export function Tweet({
 
         try {
             const resp = await fetch(
-                `https://backend-rafaelglowacki.pythonanywhere.com/api/tweets/${id}/add_comment/`,
+                `https://Kaio17.pythonanywhere.com/api/tweets/${id}/add_comment/`,
                 {
                     method: 'POST',
                     headers: {

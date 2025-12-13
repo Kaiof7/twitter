@@ -17,7 +17,7 @@ export function TweetBox() {
 
         try {
             console.log("Enviando tweet:", tweet);
-            const response = await fetch('https://backend-rafaelglowacki.pythonanywhere.com/api/tweets/', {
+            const response = await fetch('https://Kaio17.pythonanywhere.com/api/tweets/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

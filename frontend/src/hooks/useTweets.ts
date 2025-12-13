@@ -39,7 +39,7 @@ export function useTweets() {
 
         try {
             console.log("Iniciando busca por tweets...");
-            const response = await fetch('https://backend-rafaelglowacki.pythonanywhere.com/api/tweets/', {
+            const response = await fetch('https://Kaio17.pythonanywhere.com/api/tweets/', {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
