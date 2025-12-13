@@ -66,18 +66,35 @@ MIDDLEWARE = [
 # --------------------------------------------------------------
 # 🌐 CORS / CSRF
 # --------------------------------------------------------------
-CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://kaio17.pythonanywhere.com",
     "https://twitter-theta-henna.vercel.app",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+from corsheaders.defaults import default_headers
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "authorization",
+    "content-type",
+    "x-csrftoken",
+]
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://kaio17.pythonanywhere.com",
     "https://twitter-theta-henna.vercel.app",
 ]
-
 
 # --------------------------------------------------------------
 # 🔗 ROOT / TEMPLATES / WSGI
